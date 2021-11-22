@@ -1,8 +1,15 @@
 import random
 import string
-def get_random_string(length):
-    letters = string.ascii_lowercase
-    result_str = ''.join(random.choice(letters) for i in range(length))
-    print("Random string of length", length, "is:", result_str)
 
-get_random_string(24)
+
+characters1 = string.ascii_letters + string.digits + string.punctuation
+password1 = ''.join(random.choice(characters1) for i in range(20))
+characters2 = string.ascii_letters
+password2 = ''.join(random.choice(characters2))
+characters3 = string.ascii_letters + string.punctuation
+password3 = ''.join(random.choice(characters3) for i in range(2))
+
+
+print("Random password is:", password2 + password3 + password1 + password2)
+
+
