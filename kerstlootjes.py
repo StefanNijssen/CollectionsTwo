@@ -1,4 +1,5 @@
 import random
+from typing import List
 def vraagNamen():
     listNamen = []
     while True:
@@ -14,7 +15,7 @@ def vraagNamen():
             break
 
 
-def randomLootje(list):
+def randomLootjee(list):
     list = []
     dict = {}
     dict = list
@@ -29,4 +30,18 @@ def randomLootje(list):
                     dict[key] = [dict[key],val]
             
     return list
+
+def randomLootje(list):
+    listA = list[:]
+    listB = list[:]
+
+    random.shuffle(listA)
+    random.shuffle(listB)
+    dict = {}
+
+    for index in range(min(len(listA),len(listB))):
+
+        dict[listA[index]] = listB[index]
+    print(dict)
+
 randomLootje(vraagNamen()) 
