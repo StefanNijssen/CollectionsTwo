@@ -98,6 +98,7 @@ print(bottom_Half)
 
 
 
+
 # def combinations(list):
 #     threeOfaKind = 3
 #     if 3 in list == 3:
