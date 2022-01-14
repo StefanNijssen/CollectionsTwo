@@ -42,28 +42,43 @@ def reroll(list):
 #print("U mag " + str(amountOfNumbers) + " cijfers kiezen.")
 
 #countNumbers(random)
-
+def total_value():
+    amount_Number = Dice.count(which_Number)
+    total_Number = amount_Number *(which_Number)
+    return total_Number
 Dice = throwDice(5)
 
 upper_Half = ['ones', 'twos', 'threes', 'fours', 'fives', 'sixes']
 
 bottom_Half = ['TOAK', 'FOAK', 'Full_House', 'SmSt', 'LaSt', 'Yatzhee', 'Chance']
 
-half_Choice = input('Wilt u de score in het bovenste of onderste gedeelte invullen?')
-
+half_Choice = input('Wilt u de score in het bovenste of onderste gedeelte invullen?: ')
 if half_Choice == 'bovenste':
-    which_Number = int(input('Welk nummer wil je invullen?'))
-    amount_Number = Dice.count(which_Number)
-    total_Number = amount_Number *(which_Number)
-    print(total_Number)
-elif half_Choice == 'onderste': 
-    which_Combination = input('Welke combinatie wilt u invullen')
-    if which_Combination == 'TAOK':
-        which_Number = int(input('Welk nummer wil je invullen?'))
+    which_Number = int(input('Welk nummer wil je invullen?: '))
+    upper_Half[which_Number - 1] = total_value()
+    
+elif half_Choice == 'onderste':  
+    which_Combination = input('Welke combinatie wilt u invullen: ')
+    if which_Combination == 'TOAK':
+        which_Number = int(input('Welk nummer wil je invullen?: '))
         amount_Number = Dice.count(which_Number)
-        total_Number = amount_Number *(which_Number)
         if amount_Number >= 3:
-            bottom_Half[0] = total_Number
+            bottom_Half[0] = total_value()
+    if which_Combination == 'FOAK':
+        which_Number = int(input('Welk nummer wil je invullen?: '))
+        amount_Number = Dice.count(which_Number)
+        if amount_Number >= 4:
+            bottom_Half[1] = total_value()
+    if which_Combination == 'FuHo':
+        print('Uit welke twee nummers bestaat de Full House?')
+        Number1 = int(input('Nummer 1: '))
+        Number2 = int(input('Nummer 2: '))
+        amount_Number1 = Dice.count(Number1)
+        amount_Number2 = Dice.count(Number2)
+        if amount_Number1 == 2 and amount_Number2 == 3 or amount_Number1 == 3 and amount_Number2 == 2:
+            bottom_Half[2] = 25
+    #if which_Combination == 'Chance':
+print(upper_Half)
 print(bottom_Half)
 
 
