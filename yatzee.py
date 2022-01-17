@@ -8,46 +8,14 @@ def throwDice(numberOfDice):
     for i in range(numberOfDice):
         throw = random.randint(min, max)
         list.append(throw)
-    print(list)
     return list
-    
-def countNumbers(list):
-    Total = 0
-    print(list)
-    while amountOfNumbers > 0:
-        positions = int(input("Type in op welke plaats een van de gewenste cijfers staat."))
-        listPosition = positions - 1
-        Total = Total + (list[listPosition])
-        amountOfNumbers = amountOfNumbers - 1
-    reroll(list)
-    return Total
 
-def reroll(list):
-    list2 = []
-    roll_Again = input("Wilt u nog een keer?")
-    rollAmount = int(input("Hoeveel nummers wilt u rerollen?"))
-    if roll_Again == "ja":
-        while True:
-            rollWichNumbers = int(input("Welk cijfer wilt u houden?"))
-            list2.insert(0, list.index(rollWichNumbers))
-            throwDice(rollWichNumbers)
-            print(list2)
-            return list2
-    else:
-        print("U heeft deze nummers gerollt.")
-
-#random = (throwDice(6))
-#print(random)
-#amountOfNumbers = int(input("Kies hoeveel cijfers u wilt noteren 1-6\n"))
-#print("U mag " + str(amountOfNumbers) + " cijfers kiezen.")
-
-#countNumbers(random)
 def total_value():
     amount_Number = Dice.count(which_Number)
     total_Number = amount_Number *(which_Number)
     return total_Number
 Dice = throwDice(5)
-
+print(Dice)
 upper_Half = ['ones', 'twos', 'threes', 'fours', 'fives', 'sixes']
 
 bottom_Half = ['TOAK', 'FOAK', 'Full_House', 'SmSt', 'LaSt', 'Yatzhee', 'Chance']
@@ -77,10 +45,39 @@ elif half_Choice == 'onderste':
         amount_Number2 = Dice.count(Number2)
         if amount_Number1 == 2 and amount_Number2 == 3 or amount_Number1 == 3 and amount_Number2 == 2:
             bottom_Half[2] = 25
-    #if which_Combination == 'Chance':
+    if which_Combination == 'ss':
+        i = 1
+        while i <= 5:
+            if i in Dice:
+                i = i + 1
+                Small = True
+            else:
+                Small = False
+                print('Er is geen Small Straight')
+                break
+        if Small == True:
+            bottom_Half[3] = 30
+    if which_Combination == 'ls':
+        x = 2
+        while x <= 6:
+            if x in Dice:
+                x = x + 1
+                Large = True
+            else:
+                Large = False
+                print('Er is geen Large Straight')
+                break
+        if Large == True:
+            bottom_Half[4] = 40
+    if which_Combination == 'Yatzhee':
+        which_Number = int(input('Welk nummer wil je invullen?: '))
+        amount_Number = Dice.count(which_Number)
+        if amount_Number == 5:
+            bottom_Half[5] = 50
+    if which_Combination == 'Chance':
+        bottom_Half[6] = sum(Dice)
 print(upper_Half)
 print(bottom_Half)
-
 
 
 
