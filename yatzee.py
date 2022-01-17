@@ -4,12 +4,24 @@ from collections import Counter
 def throwDice(numberOfDice):
     list = []
     min = 1
-    max = 5
+    max = 6
     for i in range(numberOfDice):
         throw = random.randint(min, max)
         list.append(throw)
     return list
+def reroll(Dice, amount_Of_Dice):
+    i = -1
+    for i in range(amount_Of_Dice):
+        
+        what_Dice = int(input('Welke dobbelstenen wilt u opnieuw gooien?[1, 2, 3, 4, 5]'))
+        Dice.pop(what_Dice - i - 1)
+        i = i + 1
+    return Dice
 
+def new_Dice():
+    new_Throw = throwDice(amount_Of_Dice)
+    retrown_Dices = new_Throw + changed_Dice
+    return retrown_Dices
 def total_value():
     amount_Number = Dice.count(which_Number)
     total_Number = amount_Number *(which_Number)
@@ -19,7 +31,16 @@ print(Dice)
 upper_Half = ['ones', 'twos', 'threes', 'fours', 'fives', 'sixes']
 
 bottom_Half = ['TOAK', 'FOAK', 'Full_House', 'SmSt', 'LaSt', 'Yatzhee', 'Chance']
-
+while(True):
+    roll_Again = input('Wilt u nog een keer gooien?')
+    if roll_Again == 'ja':   
+        amount_Of_Dice = int(input('Hoeveel dobbelstenen wilt u opnieuw gooien?'))
+        changed_Dice = reroll(Dice,amount_Of_Dice)
+        renewd_Dice = new_Dice()
+        Dice = renewd_Dice
+        print(renewd_Dice)
+    else:
+        break
 half_Choice = input('Wilt u de score in het bovenste of onderste gedeelte invullen?: ')
 if half_Choice == 'bovenste':
     which_Number = int(input('Welk nummer wil je invullen?: '))
@@ -43,7 +64,7 @@ elif half_Choice == 'onderste':
         Number2 = int(input('Nummer 2: '))
         amount_Number1 = Dice.count(Number1)
         amount_Number2 = Dice.count(Number2)
-        if amount_Number1 == 2 and amount_Number2 == 3 or amount_Number1 == 3 and amount_Number2 == 2:
+        if amount_Number1 == 2 or amount_Number1 == 3 and amount_Number2 == 3 or amount_Number2 == 2:
             bottom_Half[2] = 25
     if which_Combination == 'ss':
         i = 1
